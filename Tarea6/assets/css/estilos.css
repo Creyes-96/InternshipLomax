@@ -1,0 +1,17 @@
+.main_title{
+    text-align: center;
+  }
+
+.cursor:hover{
+    cursor: pointer;
+    background-color: #8D222C;
+    color: white;
+  }
+
+.ff{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: -20px;
+}
+

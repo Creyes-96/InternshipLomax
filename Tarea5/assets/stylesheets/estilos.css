@@ -1,0 +1,16 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+.styleImage{
+    margin-top: 25%;
+}
+
+.btn_remover{
+    margin-top: 25%;
+}
+
+.styleImage:hover{
+    transform: scale(2.0);
+}

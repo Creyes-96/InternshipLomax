@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <main id="app">
+        tarea 
+            crear un formulario que me permita agregar mas tareas a mi array de tareas
+            al dar click a una tarea la debe quitar del array a los 3 segundos
+            con bootstrap
+        <div v-if="debo_mostrar == true">
+            <input type="text" placeholder="Nombre" v-model="nombre">
+            <p>{{ nombre }}</p>
+        </div>
+        <ul>
+            <li v-for="tarea in tareas" :key="tarea" @click="mostrarTarea(tarea)">
+                {{ tarea }}
+            </li>
+        </ul>
+    </main>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                debo_mostrar: true,
+                nombre: "",
+                tareas: ["crear repo de github", "enviar link a luis"]
+            },
+            mounted() {
+
+                /*var carros = ["carro1", "carro2"]
+
+                for(let carro in carros) {
+                    console.log(carro)
+                }*/
+
+                setInterval(() => {
+                    this.debo_mostrar = !this.debo_mostrar
+                }, 1000);
+
+                setTimeout(() => {
+                    this.debo_mostrar = 'si'
+                    this.nombre = "Luis donis"
+                    this.tareas.push("llamar a Eddy")
+                }, 3000)
+            },
+            methods: {
+
+                mostrarTarea(tarea) {
+                    alert(tarea)
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>

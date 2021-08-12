@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/estilos.css">
+    <title>Tarea Vue Components</title>
+</head>
+<body>
+    <main id="app">
+        <div class="main_title">
+            <h1>Formulario de tareas</h1>
+        </div>
+        <div class="container w-50 p-3">
+          <lomax-form 
+            v-on:text-change="agregar" 
+            :nombre="x">
+          </lomax-form>
+
+            <br>
+            <br>
+
+            <ol class="list-group ">
+                <li class="list-group-item active "> Tareas por realizar:</li>
+                <ol class="list-group list-group-numbered d-flex w-100 justify-content-between ">
+                    <li v-for="tarea in tareas" @click="eliminar(tarea)" class="list-group-item list-group-item-danger cursor">
+                        
+                        
+                        {{ tarea }} 
+                       
+                        <small class="ff">Click para eliminar</small>
+                        
+                    </li>
+                </ol>
+            </ol>
+        </div>
+
+    </main>
+
+<script>
+
+  Vue.component('lomax-form', {
+            props: {
+                nombre: {
+                    type: String,
+                    required: true
+                },
+            },
+            data: function () {
+                return {
+                    texto: "",
+                    count: 0
+                }
+            },
+            template: `
+                <div class="input-group mb-3">
+                    <input type="text" v-model="texto" class="form-control" placeholder="Formulario en un componente..." id="txtTarea"/>
+                    <div>
+                      <button v-on:click="$emit('text-change', texto)" class="btn btn-outline-secondary">Insertar</button>
+                    </div>
+                </div>
+            `
+        })
+
+     new Vue({
+        el: "#app",
+        data: {
+            x: "",
+            y: "",
+            tareas: ["Crear repositorio", "Subir código", "Migrar BD", "Cargar seeds", "Generar scaffolds"]
+        },
+        mounted(){
+
+        },
+        methods:{
+            agregar: function(t){
+                this.tareas.push(t)
+                //this.$refs.item.focus(); NO SE PARA QUE SÍRVE PERO FUNCIONA SI SE QUITA
+            },
+
+            eliminar: function(tarea) {
+                setTimeout(() => {
+                    this.tareas.splice(this.tareas.indexOf(tarea), 1)
+                }, 3000)
+            },
+
+        }
+    })
+    
+</script>
+</body>
+</html>
+
+
+
